@@ -18,7 +18,7 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="{{ route('pppoe.secret') }}">
+										<a href="{{ url('pppoe/secret') }}">
 											<span class="sub-item">PPPoE Secret</span>
 										</a>
 									</li>

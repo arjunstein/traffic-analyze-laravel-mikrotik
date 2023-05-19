@@ -25,4 +25,5 @@ Route::post('/login', [AuthController::class,'login'])->name('login.post');
 
 Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
 Route::get('pppoe/secret', [PPPoEController::class,'index'])->name('pppoe.secret');
-Route::get('pppoe/secret', [PPPoEController::class,'edit'])->name('pppoe.edit');
+Route::post('pppoe/secret/store', [PPPoEController::class,'store'])->name('pppoe.store');
+Route::get('pppoe/secret/edit', [PPPoEController::class,'edit'])->name('pppoe.edit');
