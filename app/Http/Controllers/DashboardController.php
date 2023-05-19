@@ -19,6 +19,7 @@ class DashboardController extends Controller
 
             $identity = $API->comm('/system/identity/print');
             $routerModel = $API->comm('/system/routerboard/print');
+            // $secret = $API->comm('/ppp/secret/print');
 
         } else {
 
@@ -28,9 +29,10 @@ class DashboardController extends Controller
 
         // dd($identity);
         $data = [
-            'title' => 'Halaman Dashboard',
+            'title' => 'Dashboard',
             'identity' => $identity[0]['name'],
             'routerModel' => $routerModel[0]['model'],
+            // 'totalSecret' => count($secret)
         ];
 
         return view('dashboard', $data);
