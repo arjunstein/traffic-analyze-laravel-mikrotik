@@ -41,6 +41,11 @@ class PPPoEController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user' => 'required',
+            'password' => 'required',
+        ]);
+
         $ip = session()->get('ip');
         $user = session()->get('user');
         $pass = session()->get('pass');
@@ -65,9 +70,43 @@ class PPPoEController extends Controller
         }
     }
 
-    public function edit(Request $request)
+    public function edit($id)
     {
-        # code...
-        return view('pppoe.edit');
+        $ip = session()->get('ip');
+		$user = session()->get('user');
+		$pass = session()->get('pass');
+		$API = new RouterosAPI();
+		$API->debug = false;
+
+		if ($API->connect($ip, $user, $pass)) {
+
+			$getuser = $API->comm('/ppp/secret/print', [
+				"?.id" => '*' . $id,
+			]);
+
+			$secret = $API->comm('/ppp/secret/print');
+			$profile = $API->comm('/ppp/profile/print');
+
+			$data = [
+                'title' => 'PPPoE Secret Edit',
+				'user' => $getuser[0],
+				'secret' => $secret,
+				'profile' => $profile,
+			];
+
+			// dd($data);
+
+			return view('pppoe.edit', $data);
+		
+        } else {
+
+			return redirect('failed');
+		}
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        
     }
 }
