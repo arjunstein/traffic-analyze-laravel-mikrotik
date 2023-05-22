@@ -13,6 +13,11 @@
 </div>
 <div class="page-inner mt--5">
 <div class="col-md-12">
+            @if(session('sukses'))
+                <div class="alert alert-success">
+                {{ session('sukses') }}
+                </div>
+            @endif
 							<div class="card">
 								<div class="card-header">
 									<div class="d-flex align-items-center">
@@ -42,7 +47,7 @@
 												</div>
 												<div class="modal-body">
 													{{-- <p class="small">Create a new row using this form, make sure you fill them all</p> --}}
-													<form action="#" method="POST">
+													<form action="{{ url('pppoe/secret/store') }}" method="POST">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-sm-12">
