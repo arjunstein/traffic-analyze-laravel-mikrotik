@@ -53,14 +53,24 @@
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Username</label>
-                                                            <input name="user" type="text" id="user" class="form-control" placeholder="Username" required>
+                                                            <input name="user" type="text" id="user" class="form-control @error('user') is-invalid @enderror" placeholder="Username">
                                                         </div>
+                                                        @error('user')
+                                                            <div class="alert alert-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Password</label>
-                                                            <input name="password" type="text" id="password" class="form-control" placeholder="Password" required>
+                                                            <input name="password" type="text" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                                                         </div>
+                                                        @error('password')
+                                                            <div class="alert alert-danger">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
                                                     </div>
                                                     <div class="col-md-6 pr-0">
                                                         <div class="form-group form-group-default">
@@ -166,7 +176,7 @@
                                                     <td>{{ $sec['comment'] ?? '' }} </td>
 													<td>
 														<div class="form-button-action">
-															<a href="{{ url('pppoe/secret/edit') }}" class="btn btn-link btn-primary btn-lg" data-toggle="tooltip" data-original-title="Edit Task">
+															<a href="{{ url('pppoe/secret/edit/'.$id) }}" class="btn btn-link btn-primary btn-lg" data-toggle="tooltip" data-original-title="Edit Task">
                                                             <i class="fa fa-edit"></i>
                                                             </a>
 															<a href="#" type="button" data-toggle="tooltip" class="btn btn-link btn-danger" data-original-title="Remove"
