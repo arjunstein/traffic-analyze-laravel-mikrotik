@@ -58,7 +58,7 @@ class PPPoEController extends Controller
 				'comment' => $request['comment'] == '' ? '' : $request['comment'],
 			]);
 
-            return redirect('pppoe.secret')->with('sukses','Data berhasil ditambahkan');
+            return redirect('pppoe/secret')->with('sukses','Data berhasil ditambahkan');
     
         } else {
             return 'Koneksi gagal';
