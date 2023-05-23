@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HotspotController;
 use App\Http\Controllers\PPPoEController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +21,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [AuthController::class,'index'])->name('login');
-Route::post('/login', [AuthController::class,'login'])->name('login.post');
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
+// Dashboard
+Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('pppoe/secret', [PPPoEController::class,'index'])->name('pppoe.secret');
-Route::post('pppoe/secret/store', [PPPoEController::class,'store'])->name('pppoe.store');
-Route::get('pppoe/secret/edit/{id}', [PPPoEController::class,'edit'])->name('pppoe.edit');
-Route::post('pppoe/secret/update', [PPPoEController::class,'update'])->name('pppoe.update');
-Route::get('pppoe/secret/delete/{id}', [PPPoEController::class,'destroy'])->name('pppoe.destroy');
+// PPPoE Secret
+Route::get('pppoe/secret', [PPPoEController::class, 'index'])->name('pppoe.secret');
+Route::post('pppoe/secret/store', [PPPoEController::class, 'store'])->name('pppoe.store');
+Route::get('pppoe/secret/edit/{id}', [PPPoEController::class, 'edit'])->name('pppoe.edit');
+Route::post('pppoe/secret/update', [PPPoEController::class, 'update'])->name('pppoe.update');
+Route::get('pppoe/secret/delete/{id}', [PPPoEController::class, 'destroy'])->name('pppoe.destroy');
+
+// Hotspot
+Route::get('hotspot', [HotspotController::class,'index'])->name('hotspot.index');
