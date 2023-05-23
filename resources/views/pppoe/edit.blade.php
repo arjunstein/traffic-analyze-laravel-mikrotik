@@ -11,7 +11,6 @@
             </div>
         </div>
     </div>
-
     <div class="page-inner mt--5">
         <div class="row mt--2 justify-content-center">
             <div class="col-md-8">
