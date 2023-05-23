@@ -17,7 +17,7 @@
         <div class="col-md-8">
 <div class="card">
     <p><a href="{{ route('pppoe.secret') }}" class="btn btn-success"><i class="fas fa-backward"></i></a></p>
- <form action="#" method="POST">
+    <form action="{{ route('pppoe.update') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -78,8 +78,7 @@
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
-
-                    <button type="submit" class="btn btn-outline-primary">Save</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </div>
             </form>
             </div>

@@ -105,8 +105,29 @@ class PPPoEController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        
+        $ip = session()->get('ip');
+        $user = session()->get('user');
+        $pass = session()->get('pass');
+        $API = new RouterosAPI();
+        $API->debug = false;
+        $API->connect($ip, $user, $pass);
+
+		$API->comm("/ppp/secret/set", [
+			".id" => $request['id'],
+			'name' => $request['user'] == '' ? $request['user'] : $request['user'],
+			'password' => $request['password'] == '' ? $request['password'] : $request['password'],
+			'service' => $request['service'] == '' ? $request['service'] : $request['service'],
+			'profile' => $request['profile'] == '' ? $request['profile'] : $request['profile'],
+			'disabled' => $request['disabled'] == '' ? $request['disabled'] : $request['disabled'],
+			'local-address' => $request['localaddress'] == '' ? $request['localaddress'] : $request['localaddress'],
+			'remote-address' => $request['remoteaddress'] == '' ? $request['remoteaddress'] : $request['remoteaddress'],
+			'comment' => $request['comment'] == '' ? $request['comment'] : $request['comment'],
+		]);
+
+		return redirect('pppoe/secret')->with('sukses','Data PPPoE berhasil diperbarui');
+
+        // dd($request->all);
     }
 }
