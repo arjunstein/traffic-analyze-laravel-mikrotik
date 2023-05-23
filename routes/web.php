@@ -29,3 +29,4 @@ Route::get('pppoe/secret', [PPPoEController::class,'index'])->name('pppoe.secret
 Route::post('pppoe/secret/store', [PPPoEController::class,'store'])->name('pppoe.store');
 Route::get('pppoe/secret/edit/{id}', [PPPoEController::class,'edit'])->name('pppoe.edit');
 Route::post('pppoe/secret/update', [PPPoEController::class,'update'])->name('pppoe.update');
+Route::get('pppoe/secret/delete/{id}', [PPPoEController::class,'destroy'])->name('pppoe.destroy');

@@ -130,4 +130,25 @@ class PPPoEController extends Controller
 
         // dd($request->all);
     }
+
+    public function destroy($id)
+    {
+        $ip = session()->get('ip');
+        $user = session()->get('user');
+        $pass = session()->get('pass');
+        $API = new RouterosAPI();
+        $API->debug = false;
+        
+        if ($API->connect($ip, $user, $pass)) {
+
+			$API->comm('/ppp/secret/remove', [
+				'.id' => '*' . $id
+			],);
+
+			return redirect('pppoe/secret')->with('sukses', 'Berhasil menghapus data');
+		} else {
+
+			return redirect('failed');
+		}    
+    }
 }
