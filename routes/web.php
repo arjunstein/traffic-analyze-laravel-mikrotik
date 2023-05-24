@@ -36,3 +36,6 @@ Route::get('pppoe/secret/delete/{id}', [PPPoEController::class, 'destroy'])->nam
 
 // Hotspot
 Route::get('hotspot', [HotspotController::class,'index'])->name('hotspot.index');
+Route::post('hotspot/store', [HotspotController::class,'store'])->name('hotspot.store');
+Route::get('hotspot/edit/{id}', [HotspotController::class,'edit'])->name('hotspot.edit');
+Route::post('hotspot/update', [HotspotController::class,'update'])->name('hotspot.update');

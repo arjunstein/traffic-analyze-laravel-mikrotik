@@ -5,6 +5,7 @@
     @include('partials.head')
 
 </head>
+
 <body>
 	<div class="wrapper">
 		<div class="main-header">
