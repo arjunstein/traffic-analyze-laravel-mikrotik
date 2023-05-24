@@ -100,7 +100,7 @@ class PPPoEController extends Controller
 		
         } else {
 
-			return redirect('failed');
+			return 'Gagal';
 		}
 
     }
@@ -148,7 +148,7 @@ class PPPoEController extends Controller
 			return redirect('pppoe/secret')->with('sukses', 'Berhasil menghapus data');
 		} else {
 
-			return redirect('failed');
+			return 'Gagal';
 		}    
     }
 }

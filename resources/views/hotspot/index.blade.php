@@ -14,6 +14,11 @@
 
     <div class="page-inner mt--5">
         <div class="col-md-12">
+            @if (session('sukses'))
+                <div class="alert alert-success" style="color: white; background-color:#31ce36;">
+                    {{ session('sukses') }}
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
@@ -43,28 +48,39 @@
                                 </div>
                                 <div class="modal-body">
                                     <!-- <p class="small">Create a new row using this form, make sure you fill them all</p> -->
-                                    <form action="#" method="POST">
+                                    <form action="{{ url('hotspot/store') }}" method="POST">
                                         @csrf
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="form-group form-group-default">
                                                     <label>User</label>
-                                                    <input name="user" type="text" class="form-control"
-                                                        placeholder="User" required>
+                                                    <input name="user" type="text"
+                                                        class="form-control @error('user') is-invalid @enderror"
+                                                        placeholder="User">
                                                 </div>
+                                                @error('user')
+                                                    <div class="alert alert-danger">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="form-group form-group-default">
                                                     <label>Password</label>
-                                                    <input name="password" type="text" class="form-control"
-                                                        placeholder="Password" required>
+                                                    <input name="password" type="text"
+                                                        class="form-control @error('password') is-invalid @enderror"
+                                                        placeholder="Password">
                                                 </div>
+                                                @error('password')
+                                                    <div class="alert alert-danger">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="form-group form-group-default">
                                                     <label>Server</label>
-                                                    <select name="server" class="form-control" placeholder="Password"
-                                                        required>
+                                                    <select name="server" class="form-control" placeholder="Password">
                                                         <option disabled selected>Pilih</option>
                                                         @foreach ($server as $data)
                                                             <option>{{ $data['name'] }}</option>
@@ -75,8 +91,7 @@
                                             <div class="col-sm-12">
                                                 <div class="form-group form-group-default">
                                                     <label>Profile</label>
-                                                    <select name="profile" class="form-control" placeholder="Profile"
-                                                        required>
+                                                    <select name="profile" class="form-control" placeholder="Profile">
                                                         <option disabled selected>Pilih</option>
                                                         @foreach ($profile as $data)
                                                             <option>{{ $data['name'] }}</option>
@@ -108,7 +123,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="card-body">
                         <div class="table-responsive">
@@ -150,8 +164,8 @@
                                             <td>{{ $data['password'] ?? '' }}</td>
                                             <td>{{ $data['profile'] ?? '' }}</td>
                                             <td>{{ $data['uptime'] ?? '' }}</td>
-                                            <td>{{ formatBytes($data['bytes-in'],) }}</td>
-                                            <td>{{ formatBytes($data['bytes-out'],) }}</td>
+                                            <td>{{ formatBytes($data['bytes-in']) }}</td>
+                                            <td>{{ formatBytes($data['bytes-out']) }}</td>
                                             <td>
                                                 @if ($data['disabled'] == 'true')
                                                     Disable
@@ -163,11 +177,11 @@
                                             <td>{{ $data['comment'] ?? '' }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="#" class="btn btn-link btn-primary btn-lg"
+                                                    <a href="{{ url('hotspot/edit/'.$id) }}" class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <a href="" type="button" data-toggle="tooltip"
+                                                    <a href="#" type="button" data-toggle="tooltip"
                                                         class="btn btn-link btn-danger" data-original-title="Remove"
                                                         onclick="return confirm('Apakah anda yakin menghapus user {{ $data['name'] }} ?')">
                                                         <i class="fa fa-times"></i>

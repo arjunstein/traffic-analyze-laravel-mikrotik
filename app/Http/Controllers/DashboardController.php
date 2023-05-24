@@ -19,7 +19,8 @@ class DashboardController extends Controller
 
             $identity = $API->comm('/system/identity/print');
             $routerModel = $API->comm('/system/routerboard/print');
-            // $secret = $API->comm('/ppp/secret/print');
+            $hotspotuser = $API->comm('/ip/hotspot/user/print');
+            $secret = $API->comm('/ppp/secret/print');
 
         } else {
 
@@ -30,9 +31,10 @@ class DashboardController extends Controller
         // dd($identity);
         $data = [
             'title' => 'Dashboard',
+            'totalhotspotuser' => count($hotspotuser),
             'identity' => $identity[0]['name'],
             'routerModel' => $routerModel[0]['model'],
-            // 'totalSecret' => count($secret)
+            'totalSecret' => count($secret)
         ];
 
         return view('dashboard', $data);
