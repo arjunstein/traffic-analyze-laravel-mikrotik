@@ -172,12 +172,12 @@
                                                 @else
                                                     Enable
                                                 @endif
-
                                             </td>
                                             <td>{{ $data['comment'] ?? '' }}</td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <a href="{{ url('hotspot/edit/'.$id) }}" class="btn btn-link btn-primary btn-lg"
+                                                    <a href="{{ url('hotspot/edit/' . $id) }}"
+                                                        class="btn btn-link btn-primary btn-lg"
                                                         data-original-title="Edit Task">
                                                         <i class="fa fa-edit"></i>
                                                     </a>

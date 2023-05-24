@@ -47,11 +47,6 @@
                                         <option>{{ $data['name'] }}</option>
                                     @endforeach
                                 </select>
-                                @error('server')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="profile">Profile</label>
@@ -62,26 +57,16 @@
                                         <option>{{ $data['name'] }}</option>
                                     @endforeach
                                 </select>
-                                @error('profile')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="timelimit">Time Limit</label>
                                 <input type="text" name="timelimit" value="{{ $user['uptime'] ?? '' }}"
                                     class="form-control @error('timelimit') is-invalid @enderror" id="timelimit">
-                                @error('timelimit')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select name="disabled" id="disabled"
-                                    class="form-control @error('disabled') is-invalid @enderror">
+                                    class="form-control">
                                     @if ($user['disabled'] == 'false')
                                         <option disabled selected>Enable</option>
                                     @else
@@ -90,22 +75,12 @@
                                     <option value="false">Enable</option>
                                     <option value="true">Disable</option>
                                 </select>
-                                @error('disabled')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="comment">Comment</label>
                                 <input type="text" name="comment"
-                                    class="form-control @error('comment') is-invalid @enderror"
+                                    class="form-control"
                                     value="{{ $user['comment'] ?? '' }}" id="comment">
-                                @error('comment')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">
