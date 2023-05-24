@@ -121,22 +121,23 @@ class HotspotController extends Controller
                 $timelimit = $request['timelimit'];
             }
 
-        $API->comm('/ip/hotspot/user/set', [
-            '.id' => $request['id'],
-            'name' => $request['user'] == '' ? $request['user'] : $request['user'],
-			'password' => $request['password'] == '' ? $request['password'] : $request['password'],
-            'server' => $request['server']== '' ? $request['server'] : $request['server'],
-            'profile' => $request['profile'] == '' ? $request['profile'] : $request['profile'],
-            'limit-uptime' => $timelimit,
-            'disabled' => $request['disabled'] == '' ? $request['disabled'] : $request['disabled'],
-            'comment' => $request['comment'] == '' ? $request['comment'] : $request['comment'],
-        ]);
-     
-        return redirect('hotspot')->with('sukses', 'Hotspot user berhasil diperbarui');
-        
-    } else {
-        return 'Gagal';
-    }
-        
+            $API->comm('/ip/hotspot/user/set', [
+                '.id' => $request['id'],
+                'name' => $request['user'] == '' ? $request['user'] : $request['user'],
+                'password' => $request['password'] == '' ? $request['password'] : $request['password'],
+                'server' => $request['server'] == '' ? $request['server'] : $request['server'],
+                'profile' => $request['profile'] == '' ? $request['profile'] : $request['profile'],
+                'limit-uptime' => $timelimit,
+                'disabled' => $request['disabled'] == '' ? $request['disabled'] : $request['disabled'],
+                'comment' => $request['comment'] == '' ? $request['comment'] : $request['comment'],
+            ]);
+
+            return redirect('hotspot')->with('sukses', 'Hotspot user berhasil diperbarui');
+
+        } else {
+
+            return 'Gagal';
+
+        }
     }
 }
